@@ -42,9 +42,8 @@ class Initialization:
                 line_number=1
                 for line in file:
                     if line!="":
-                        line=''.join(x for x in line if x.isalpha() or x.isspace())
-                        line=' '.join(line.split())
-                        print(line)
+                        line = ''.join(x for x in line if x.isalpha() or x.isspace())
+                        line = ' '.join(line.split())
                         location=file_path+str(line_number)
                         sentence=Sentence(line.rstrip(),location)
                         print("****"+line.rstrip(),"****"+location)
