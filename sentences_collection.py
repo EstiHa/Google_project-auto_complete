@@ -7,7 +7,7 @@ class SentencesCollection:
             SentencesCollection.__instance = object.__new__(cls)
         return SentencesCollection.__instance
 
-    def __init__(self, first_name, last_name):
+    def __init__(self):
         self.sentences_collection={}
 
     def add_sentence(self, sentence_object):
