@@ -2,7 +2,7 @@ from sentence import Sentence
 from sentences_collection import SentencesCollection
 from trie import Trie
 
-sen1=Sentence("hg hy 1","page1")
+sen1=Sentence("hg","page1")
 sen2=Sentence("hy 2","page1")
 sen3=Sentence("hy 3","page1")
 sen4=Sentence("hy 4","page1")
