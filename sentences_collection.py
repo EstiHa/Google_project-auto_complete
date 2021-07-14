@@ -3,6 +3,7 @@ from trie import Trie
 
 class SentencesCollection:
     __instance = None
+    __init=None
 
     def __new__(cls, *args, **kwargs):
         if not SentencesCollection.__instance:
@@ -10,8 +11,10 @@ class SentencesCollection:
         return SentencesCollection.__instance
 
     def __init__(self):
-        self.sentences_collection = {}
-        self.__sen_counter = 0
+        if not SentencesCollection.__init:
+            self.sentences_collection = {}
+            self.__sen_counter = 0
+            SentencesCollection.__init='initialized'
 
     def add_sentence_obj(self, sentence_object):
         # print(self.sentences_collection)
@@ -21,9 +24,7 @@ class SentencesCollection:
         my_tree = Trie.getInstance()
         sentence=sentence_object.get_sentence()
 
-
         while sentence.find(' ')>-1:
-
             my_tree.insert(sentence,self.__sen_counter)
             sentence=sentence[sentence.find(' ')+1:]
             # print(sentence, sentence.find(' '))

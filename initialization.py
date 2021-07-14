@@ -20,15 +20,18 @@ class Initialization:
         try:
             directory_path=''
             while not directories.empty():
-                directory_path+=directories.get()+'/'
+                directory_path=directories.get()+'/'
+                print("directory path: ",directory_path)
                 for x in os.listdir(directory_path):
-                    if os.path.isdir(x):
-                        directories.put(x)
+                    path=directory_path+x
+                    print(x, os.path.isdir(path))
+                    if os.path.isdir(path):
+                        directories.put(path)
                     elif x.endswith(".txt"):
-                        print(directory_path,type(x))
-                        print(x,type(directory_path))
-                        path=directory_path+x
-                        print(path)
+                        # print(directory_path,type(x))
+                        # print(x,type(directory_path))
+                        # path=directory_path+x
+                        # print(path)
                         self.file_handler(path)
                     else:
                         raise IsADirectoryError
@@ -38,7 +41,7 @@ class Initialization:
 #Read a file and send each sentence to be insert to a trie.
     def file_handler(self, file_path):
         try:
-            with open(file_path) as file:
+            with open(file_path, encoding="utf8") as file:
                 line_number=1
                 for line in file:
                     if line!="":
@@ -46,7 +49,7 @@ class Initialization:
                         line = ' '.join(line.split())
                         location=file_path+str(line_number)
                         sentence=Sentence(line.rstrip(),location)
-                        print("****"+line.rstrip(),"****"+location)
+                        # print("****"+line.rstrip(),"****"+location)
                         self.sentences_collection.add_sentence_obj(sentence)
         except Exception as e:
             print(e)

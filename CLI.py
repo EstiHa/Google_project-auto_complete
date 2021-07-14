@@ -10,7 +10,8 @@ class CLI:
         while True:
             print("Enter your text:")
             text=input()
-            completion.search_completions(text)
+            sentences=self.completion.search_completions(text)
+            print(sentences)
 
 
 if __name__ == '__main__':

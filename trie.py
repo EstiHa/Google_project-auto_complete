@@ -32,12 +32,16 @@ class Trie():
         Trie.__instance = self
         self.root = TrieNode()
 
-    def insert(self, string,id_of_sen):
+    def insert(self, string, id_of_sen):
         node = self.root
+        index = 10
         for a in list(string):
+            index -= 1
             if not node.children.get(a):
                 node.children[a] = TrieNode()
             node = node.children[a]
+            if index == 0:
+                break
         node.last.append(id_of_sen)
 
     def search(self, key):
