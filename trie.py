@@ -41,6 +41,7 @@ class Trie():
         node.last.append(id_of_sen)
 
     def search(self, key):
+        index_array=[]
         node = self.root
         found = True
         for a in list(key):
@@ -49,9 +50,16 @@ class Trie():
                 break
             node = node.children[a]
         if found and node:
-            return node.last
-        else:
-            return False
+            self.extend_sub_tree(node,index_array)
+            # index_array.extend(node.last)
+        return index_array
+
+
+    def extend_sub_tree(self,node,sol,word=''):
+        sol.extend(node.last)
+        for a, n in node.children.items():
+            self.extend_sub_tree(n,sol, word + a)
+
 
     def print_trie(self,node=None,word=''):
         if not node:

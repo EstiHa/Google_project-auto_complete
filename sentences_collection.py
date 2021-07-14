@@ -17,20 +17,16 @@ class SentencesCollection:
         # print(self.sentences_collection)
         self.__sen_counter += 1
         self.sentences_collection[str(self.__sen_counter)] = sentence_object
-        my_tree = Trie.getInstance()
-        sentence = sentence_object.get_sentence()
-        print(len(sentence))
-        while sentence.find(' ')>0:
-            my_tree.insert(sentence, self.__sen_counter)
-            sentence = sentence[sentence.find(' ') + 1:]
-        my_tree.insert(sentence, self.__sen_counter)
 
         my_tree = Trie.getInstance()
         sentence=sentence_object.get_sentence()
-        # print(sentence,sentence.find(' '))
+
+
         while sentence.find(' ')>-1:
+
             my_tree.insert(sentence,self.__sen_counter)
             sentence=sentence[sentence.find(' ')+1:]
+            # print(sentence, sentence.find(' '))
         my_tree.insert(sentence, self.__sen_counter)
 
     def get_sentence_obj(self, id):

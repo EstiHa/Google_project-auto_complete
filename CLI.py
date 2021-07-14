@@ -11,4 +11,4 @@ if __name__ == '__main__':
     initialize.initialize()
     mt=Trie.getInstance()
     mt.print_trie()
-    print(mt.search("hey"))
+    print(mt.search("today"))
