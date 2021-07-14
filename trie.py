@@ -1,12 +1,35 @@
 class TrieNode():
+
     def __init__(self):
         self.children = {}
         self.last = []
 
 
 class Trie():
-    def __init__(self):
+    __instance = None
 
+    # def __new__(cls):
+    #     if Trie.__instance is None:
+    #         Trie.__instance = object.__new__(cls)
+    #     return Trie.__instance
+    #
+    # def __init__(self):
+    #     self.root = TrieNode()
+
+    # __instance = None
+
+    @staticmethod
+    def getInstance():
+        if not Trie.__instance:
+            Trie()
+        return Trie.__instance
+
+    def __init__(self):
+        if Trie.__instance:
+            raise Exception("Trie is singleton class,"
+                            " Instead of initial new Instance you"
+                            " can use the getInstance() method.")
+        Trie.__instance = self
         self.root = TrieNode()
 
     def insert(self, string,id_of_sen):
@@ -16,6 +39,7 @@ class Trie():
                 node.children[a] = TrieNode()
             node = node.children[a]
         node.last.append(id_of_sen)
+
     def search(self, key):
         node = self.root
         found = True
@@ -43,11 +67,15 @@ class Trie():
 
 
 # creating trie object
-t = Trie()
-t.insert("lk",4)
-t.insert("la",3)
-t.insert('l',2)
-t.insert('l',1)
-print(t.search('l'))
-t.print_trie()
+# t = Trie.getInstance()
+# t.insert("lk",4)
+# t.insert("la",3)
+# t.insert('l',2)
+# t.insert('l',1)
+# print(t.search('l'))
+# t.print_trie()
+# t2=Trie.getInstance()
+# print(t.search('l'))
+# t.print_trie()
+
 
