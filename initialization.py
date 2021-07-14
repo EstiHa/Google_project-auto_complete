@@ -1,5 +1,7 @@
 import os
+import string
 from queue import Queue
+import re
 
 from sentence import Sentence
 from sentences_collection import SentencesCollection
@@ -10,7 +12,7 @@ class Initialization:
         self.path=path
         self.sentences_collection=SentencesCollection()
 
-    #open the main directory, read itws sub fies and directories and send the files for treatment.
+    #Open the main directory, read it's sub files and directories and send the files for treatment.
     def initialize(self):
         directories=Queue()
         directories.put(self.path)
@@ -40,6 +42,9 @@ class Initialization:
                 line_number=1
                 for line in file:
                     if line!="":
+                        line=''.join(x for x in line if x.isalpha() or x.isspace())
+                        line=' '.join(line.split())
+                        print(line)
                         location=file_path+str(line_number)
                         sentence=Sentence(line.rstrip(),location)
                         print("****"+line.rstrip(),"****"+location)

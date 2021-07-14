@@ -27,7 +27,7 @@ class SentencesCollection:
 
         my_tree = Trie.getInstance()
         sentence=sentence_object.get_sentence()
-        while len(sentence)>1:
+        while sentence.find(' ')>-1:
             my_tree.insert(sentence,self.__sen_counter)
             sentence=sentence[sentence.find(' ')+1:]
         my_tree.insert(sentence, self.__sen_counter)

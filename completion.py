@@ -1,2 +1,2 @@
 class Completion:
-    pass
+    def search_completions(self, text):
