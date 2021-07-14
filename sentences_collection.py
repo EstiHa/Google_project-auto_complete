@@ -19,7 +19,10 @@ class SentencesCollection:
         self.sentences_collection[str(self.__sen_counter)] = sentence_object
 
         my_tree = Trie.getInstance()
-        my_tree.insert(sentence_object.get_sentence(),self.__sen_counter)
+        sentence=sentence_object.get_sentence()
+        while len(sentence)>1:
+            my_tree.insert(sentence,self.__sen_counter)
+            sentence=sentence[sentence.find(' ')+1:]
 
     def get_sentence_obj(self, id):
         return self.sentences_collection.get(id)
