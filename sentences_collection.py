@@ -1,6 +1,8 @@
+from trie import Trie
+
+
 class SentencesCollection:
-    __instance=None
-    __sen_counter=0
+    __instance = None
 
     def __new__(cls, *args, **kwargs):
         if not SentencesCollection.__instance:
@@ -8,14 +10,21 @@ class SentencesCollection:
         return SentencesCollection.__instance
 
     def __init__(self):
-        self.sentences_collection={}
+        self.sentences_collection = {}
+        self.__sen_counter = 0
 
-    def add_sentence(self, sentence_object):
-        SentencesCollection.__sen_counter+=1
-        self.sentences_collection[SentencesCollection.__sen_counter]=sentence_object
+    def add_sentence_obj(self, sentence_object):
+        # print(self.sentences_collection)
+        self.__sen_counter += 1
+        self.sentences_collection[str(self.__sen_counter)] = sentence_object
 
-    def get_sentence(self, id):
-        return self.sentences_collection[id]
+        my_tree = Trie.getInstance()
+        my_tree.insert(sentence_object.get_sentence(),self.__sen_counter)
+
+    def get_sentence_obj(self, id):
+        return self.sentences_collection.get(id)
 
     def get_sentences_collection(self):
         return self.sentences_collection
+
+
