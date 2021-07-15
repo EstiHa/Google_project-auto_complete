@@ -1,3 +1,5 @@
+import config
+
 class TrieNode():
 
     def __init__(self):
@@ -7,16 +9,6 @@ class TrieNode():
 
 class Trie():
     __instance = None
-
-    # def __new__(cls):
-    #     if Trie.__instance is None:
-    #         Trie.__instance = object.__new__(cls)
-    #     return Trie.__instance
-    #
-    # def __init__(self):
-    #     self.root = TrieNode()
-
-    # __instance = None
 
     @staticmethod
     def getInstance():
@@ -34,13 +26,12 @@ class Trie():
 
     def insert(self, string, id_of_sen):
         node = self.root
-        index = 10
         for a in list(string):
-            index -= 1
+            config.index -= 1
             if not node.children.get(a):
                 node.children[a] = TrieNode()
             node = node.children[a]
-            if index == 0:
+            if config.index == 0:
                 break
         node.last.append(id_of_sen)
 
@@ -55,7 +46,6 @@ class Trie():
             node = node.children[a]
         if found and node:
             self.extend_sub_tree(node,index_array)
-            # index_array.extend(node.last)
         return index_array
 
 
@@ -76,18 +66,3 @@ class Trie():
 
         for a, n in node.children.items():
             self.print_trie(n, word + a)
-
-
-# creating trie object
-# t = Trie.getInstance()
-# t.insert("lk",4)
-# t.insert("la",3)
-# t.insert('l',2)
-# t.insert('l',1)
-# print(t.search('l'))
-# t.print_trie()
-# t2=Trie.getInstance()
-# print(t.search('l'))
-# t.print_trie()
-
-

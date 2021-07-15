@@ -14,6 +14,7 @@ class Initialization:
 
     #Open the main directory, read it's sub files and directories and send the files for treatment.
     def initialize(self):
+        print("Loading the files and preparing the system...")
         directories=Queue()
         directories.put(self.path)
         x=''
@@ -21,20 +22,17 @@ class Initialization:
             directory_path=''
             while not directories.empty():
                 directory_path=directories.get()+'/'
-                print("directory path: ",directory_path)
+                # print("directory path: ",directory_path)
                 for x in os.listdir(directory_path):
                     path=directory_path+x
-                    print(x, os.path.isdir(path))
+                    # print(x, os.path.isdir(path))
                     if os.path.isdir(path):
                         directories.put(path)
                     elif x.endswith(".txt"):
-                        # print(directory_path,type(x))
-                        # print(x,type(directory_path))
-                        # path=directory_path+x
-                        # print(path)
                         self.file_handler(path)
                     else:
                         raise IsADirectoryError
+            print("The system is ready.")
         except IsADirectoryError:
             print(f'Unknown file {x}')
 
@@ -49,7 +47,6 @@ class Initialization:
                         line = ' '.join(line.split())
                         location=file_path+str(line_number)
                         sentence=Sentence(line.rstrip(),location)
-                        # print("****"+line.rstrip(),"****"+location)
                         self.sentences_collection.add_sentence_obj(sentence)
         except Exception as e:
             print(e)
