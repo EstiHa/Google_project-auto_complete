@@ -17,5 +17,5 @@ my_sen_coll.add_sentence_obj(sen4)
 
 
 my_trie=Trie.getInstance()
-my_trie.print_trie()
-# print(my_trie.search("hy 4"))
+# my_trie.print_trie()
+print(my_trie.search("hy 4"))
