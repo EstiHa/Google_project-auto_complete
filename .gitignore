@@ -3,3 +3,4 @@ venv/*
 .git/*
 venu/*
 __pycache__/*
+2021_archive/*

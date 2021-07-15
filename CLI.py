@@ -11,12 +11,13 @@ class CLI:
             print("Enter your text:")
             text = input()
             sentences = self.completion.search_completions(text)
-            if sentences is None:
+            if sentences == "not found":
                 print("The sentence was not found")
-            else:
-                sentences.sort()
+            elif sentences is not None:
+                # sentences.sort()
                 for i in range(len(sentences)):
-                    print(f'{i + 1}. {sentences[i]}')
+                    print(
+                        f'{i + 1}. {sentences[i].get_sentence()} ({sentences[i].get_location()},{sentences[i].get_sentence_index()})')
 
 
 if __name__ == '__main__':

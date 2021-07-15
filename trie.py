@@ -66,3 +66,44 @@ class Trie():
 
         for a, n in node.children.items():
             self.print_trie(n, word + a)
+
+    def search_with_added(self, key, index=1):
+        index_array = []
+        node = self.root
+        found = True
+        for a in list(key):
+            if not node.children.get(a) and index:
+                index -= 1
+                continue
+            elif not node.children.get(a):
+                found = False
+                break
+            node = node.children[a]
+        if found and node:
+            self.extend_sub_tree(node, index_array)
+        return index_array
+
+    def search_with_clear(self, key, index=1):
+        sol = []
+        self.search_with_clear_rec(key, sol, index)
+        return sol
+
+    def search_with_clear_rec(self, key, index_array, index, index_of_a=0, node=None):
+        if not node:
+            node = self.root
+        found = True
+        for a in list(key[index_of_a:]):
+            if not node.children.get(a) and index:
+                found = False
+                index -= 1
+                for k, v in node.children.items():
+                    print(k, v)
+                    self.search_with_clear_rec(key, index_array, index, index_of_a, v)
+                continue
+            elif not node.children.get(a):
+                found = False
+                break
+            node = node.children[a]
+            index_of_a += 1
+        if found and node:
+            self.extend_sub_tree(node, index_array)
