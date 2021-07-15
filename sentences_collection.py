@@ -27,7 +27,6 @@ class SentencesCollection:
         while sentence.find(' ')>-1:
             my_tree.insert(sentence,self.__sen_counter)
             sentence=sentence[sentence.find(' ')+1:]
-            # print(sentence, sentence.find(' '))
         my_tree.insert(sentence, self.__sen_counter)
 
     def get_sentence_obj(self, id):

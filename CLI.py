@@ -14,9 +14,9 @@ class CLI:
             if sentences=="not found":
                 print("The sentence was not found")
             elif sentences is not None:
-                sentences.sort()
+                # sentences.sort()
                 for i in range(len(sentences)):
-                    print(f'{i + 1}. {sentences[i]}')
+                    print(f'{i + 1}. {sentences[i].get_sentence()} ({sentences[i].get_location()},{sentences[i].get_sentence_index()})')
 
 
 if __name__ == '__main__':

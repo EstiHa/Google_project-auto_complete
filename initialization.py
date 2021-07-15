@@ -41,8 +41,9 @@ class Initialization:
         try:
             with open(file_path, encoding="utf8") as file:
                 line_number=1
-                i=1
+                i=0
                 for line in file:
+                    i+=1
                     print(line)
                     if line!="":
                         line = ''.join(x for x in line if x.isalpha() or x.isspace())
