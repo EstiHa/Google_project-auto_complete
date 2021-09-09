@@ -11,20 +11,24 @@ class Completion:
 
     def search_completions(self, text):
         if text == '#':
+            self.prev_text = None
             self.prev_sentences = None
             return
+        if self.prev_text is not None:
+            text = self.prev_text + text
         sentences_id = self.trie.search(text)
+        # print(sentences_id)
         if self.prev_sentences is None:
             sentences = self.get_five_sentences(sentences_id, text)
         else:
             sentences_id = self.get_relevant_sentences(sentences_id)
             sentences = self.get_five_sentences(sentences_id, text)
-        if sentences is not "not found":
+        if sentences != "not found":
             self.prev_sentences = sentences_id
             self.prev_text = text
         return sentences
 
-    # Extract five objects of sentences by id from the fit sentences id list.
+    #Extract five objects of sentences by id from the fit sentences id list.
     def get_five_sentences(self, sentences_id, text):
         if len(sentences_id) == 0:
             self.prev_sentences = None
@@ -37,7 +41,7 @@ class Completion:
                 break
             sen_obj = self.sentences_collection.get_sentence_obj(str(sentences_id[i]))
             sen = sen_obj.get_sentence()
-            if self.prev_sentences is None or f'{self.prev_text} {text}' in sen:
+            if text in sen:
                 if sen not in res:
                     completed_sentences.append(sen_obj)
                     res.append(sen)
@@ -61,3 +65,39 @@ class Completion:
                 if val in sentences_id:
                     sen_ids.append(val)
         return sen_ids
+
+    def get_prev_sentence(self):
+        return self.prev_text
+
+    # def get_five_sentences(self, sentences_id, text):
+        # if len(sentences_id) == 0:
+        #     self.prev_sentences = None
+        #     return "not found"
+        # completed_sentences = []
+        # res = []
+        # i = 0
+        # for key in sorted(sentences_id.keys()):
+        #     for id in sentences_id[key]:
+        #         sen_obj = self.sentences_collection.get_sentence_obj(str(id))
+        #         sen = sen_obj.get_sentence()
+        #         if self.prev_sentences is None or f'{self.prev_text} {text}' in sen:
+        #             if sen not in res:
+        #                 completed_sentences.append(sen_obj)
+        #                 res.append(sen)
+        #     if len(completed_sentences)==5:
+        #         break
+
+        # while len(completed_sentences) < 5:
+        #     if i == len(sentences_id):
+        #         break
+        #     sen_obj = self.sentences_collection.get_sentence_obj(str(sentences_id[i]))
+        #     sen = sen_obj.get_sentence()
+        #     if self.prev_sentences is None or f'{self.prev_text} {text}' in sen:
+        #         if sen not in res:
+        #             completed_sentences.append(sen_obj)
+        #             res.append(sen)
+        #     i += 1
+        # if len(completed_sentences)==0:
+        #     self.prev_sentences=None
+        #     return "not found"
+        # return completed_sentences

@@ -25,7 +25,6 @@ class Initialization:
                 # print("directory path: ",directory_path)
                 for x in os.listdir(directory_path):
                     path=directory_path+x
-                    print(x)
                     if os.path.isdir(path):
                         directories.put(path)
                     elif x.endswith(".txt"):
@@ -44,7 +43,6 @@ class Initialization:
                 i=0
                 for line in file:
                     i+=1
-                    print(line)
                     if line!="":
                         line = ''.join(x for x in line if x.isalpha() or x.isspace())
                         line = ' '.join(line.split())

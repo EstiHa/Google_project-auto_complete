@@ -8,8 +8,15 @@ class CLI:
 
     def run(self):
         while True:
-            print("Enter your text:")
+            prev_sentence = self.completion.get_prev_sentence()
+            if prev_sentence is None:
+                print("Enter your text:")
+                prev_sentence=''
+            else:
+                print(prev_sentence, end='')
             text = input()
+
+            # text = prev_sentence + input()
             sentences = self.completion.search_completions(text)
             if sentences == "not found":
                 print("The sentence was not found")
@@ -21,7 +28,7 @@ class CLI:
 
 
 if __name__ == '__main__':
-    initialize = Initialization('pages')
+    initialize = Initialization('2021_archive')
     initialize.initialize()
 
     completion = Completion()
