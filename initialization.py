@@ -51,4 +51,3 @@ class Initialization:
                         self.sentences_collection.add_sentence_obj(sentence)
         except Exception as e:
             print(e)
-
