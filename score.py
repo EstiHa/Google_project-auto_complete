@@ -23,3 +23,4 @@ def get_score(fix_name, index):
         return score[fix_name][index]
     else:
         return score[fix_name]['else']
+    
