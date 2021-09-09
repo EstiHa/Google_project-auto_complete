@@ -18,6 +18,7 @@ class SentencesCollection:
 
     def add_sentence_obj(self, sentence_object):
         # print(self.sentences_collection)
+
         self.__sen_counter += 1
         self.sentences_collection[str(self.__sen_counter)] = sentence_object
 
