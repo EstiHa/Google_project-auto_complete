@@ -1,7 +1,6 @@
 from completion import Completion
 from initialization import Initialization
 
-
 class CLI:
     def __init__(self, completion):
         self.completion = completion
